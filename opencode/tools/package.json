@@ -1,0 +1,19 @@
+{
+  "name": "agno-agents-tools",
+  "version": "1.0.0",
+  "description": "Custom tools for OpenCode multi-agent system",
+  "main": "index.ts",
+  "types": "dist",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.0.0",
+    "glob": "^10.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

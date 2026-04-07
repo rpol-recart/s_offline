@@ -1,0 +1,12 @@
+node_modules
+bun.lock
+package-lock.json
+dist/
+
+# Runtime state
+logs/
+sessions/
+todos.json
+task-queue/completed/
+task-queue/failed/
+task-queue/logs/
