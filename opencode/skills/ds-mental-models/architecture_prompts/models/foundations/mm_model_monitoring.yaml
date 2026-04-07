@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_MODEL_MONITORING - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_model_monitoring:
+  name: "Model Monitoring and Drift Detection"
+  tier: 1_foundations
+  cluster: operations
+  category: advanced
+  impact: critical
+  think_like: "A vigilant doctor monitoring patient health"
+  assume: "Models degrade silently; continuous monitoring is essential"
+  ask: "What would failure look like? How would I detect it?"
+  prompt_fragment: |
+    Think like a vigilant model doctor:
+    1. Establish baseline: what does healthy model behavior look like?
+    2. Monitor continuously: data quality, feature distributions, performance
+    3. Detect drift: use statistical tests to identify changes
+    4. Diagnose: which features drifted? when? why?
+    5. Respond: retrain? update? rollback? based on severity
+    6. Document: log all monitoring data and responses
+    7. Ask: "What would failure look like? How would I detect it?"
+  stages: [9, 10, 11]
+  mode: operator
+  edges:
+    - {to: mm_systems_thinking, type: applies}
+    - {to: mm_evaluation, type: continuous_version_of}
+    - {to: tech_drift_detection, type: implements}
+    - {to: tech_alerting, type: implements}
+    - {to: anti_deploy_and_forget, type: prevents}
+
+

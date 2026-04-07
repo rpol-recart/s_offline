@@ -1,0 +1,34 @@
+# ============================================================================
+# MM_EVALUATION - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_evaluation:
+  name: "Evaluation and Validation Thinking"
+  tier: 1_foundations
+  cluster: validation
+  category: foundational
+  impact: critical
+  think_like: "A rigorous tester who tries to break the model"
+  assume: "Test to find weaknesses, not to confirm strengths"
+  ask: "What will this model fail on in production?"
+  prompt_fragment: |
+    Think like a rigorous model tester:
+    1. Design evaluation to find weaknesses, not confirm strengths
+    2. Use proper data splitting: train/val/test
+    3. Select metrics that match business goals
+    4. Perform thorough error analysis: categorize failures
+    5. Check for data leakage
+    6. Validate robustness: how does model behave with different data?
+    7. Ask: "What will this model fail on in production?"
+  stages: [5, 6, 7]
+  mode: creator
+  edges:
+    - {to: mm_hypothesis_driven, type: required_for}
+    - {to: mm_error_analysis, type: feeds}
+    - {to: tech_cross_validation, type: implements}
+    - {to: tech_leakage_testing, type: implements}
+    - {to: tech_metric_selection, type: implements}
+    - {to: anti_ignore_error_analysis, type: prevents}
+
+

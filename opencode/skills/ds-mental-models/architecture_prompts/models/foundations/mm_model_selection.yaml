@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_MODEL_SELECTION - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_model_selection:
+  name: "Model Selection and Trade-offs"
+  tier: 1_foundations
+  cluster: model_development
+  category: foundational
+  impact: critical
+  think_like: "A balanced investor optimizing the portfolio"
+  assume: "Model selection is about trade-offs; no single best model exists"
+  ask: "Given my constraints, what is the best trade-off?"
+  prompt_fragment: |
+    Think like a model portfolio manager:
+    1. List your hard constraints (interpretability, latency, data size)
+    2. List your soft preferences (accuracy, speed, simplicity)
+    3. For each candidate model: what do you gain? what do you lose?
+    4. Ask: "How will this model fail? Is that acceptable?"
+    5. Consider: "Is 2% more accuracy worth 10x complexity?"
+    6. Final choice: "Given my constraints, this model is the best trade-off because..."
+  stages: [3, 4, 5]
+  mode: creator
+  edges:
+    - {to: mm_tradeoff_framing, type: guided_by}
+    - {to: mm_evaluation, type: requires}
+    - {to: tech_model_comparison, type: implements}
+    - {to: tech_interpretability_analysis, type: implements}
+    - {to: anti_choose_accuracy_only, type: prevents}
+
+

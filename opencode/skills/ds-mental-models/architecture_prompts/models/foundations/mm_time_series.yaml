@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_TIME_SERIES - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_time_series:
+  name: "Time Series Thinking"
+  tier: 1_foundations
+  cluster: analytical
+  category: specialized
+  impact: high
+  think_like: "A temporal detective tracking patterns over time"
+  assume: "Temporal dependencies, trends, and seasonality matter"
+  ask: "How does the system evolve over time?"
+  prompt_fragment: |
+    Think like a temporal analyst:
+    1. Decompose: trend, seasonality, cyclical, noise
+    2. Use temporal CV: train on past, predict future
+    3. Engineer time-aware features: lags, windows, differences
+    4. Check for temporal leakage: does feature use future info?
+    5. Monitor for concept drift: do relationships change over time?
+    6. Ask: "What will the system look like at prediction time?"
+  stages: [1, 2, 3, 4, 5, 6, 7, 10]
+  mode: creator
+  edges:
+    - {to: mm_systems_thinking, type: applies}
+    - {to: mm_data_quality, type: temporal_dimension}
+    - {to: mm_evaluation, type: requires_temporal_split}
+    - {to: tech_temporal_features, type: implements}
+    - {to: anti_ignore_temporal_structure, type: prevents}
+
+

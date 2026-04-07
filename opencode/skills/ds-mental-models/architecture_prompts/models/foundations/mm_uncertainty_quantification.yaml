@@ -1,0 +1,36 @@
+# ============================================================================
+# MM_UNCERTAINTY_QUANTIFICATION - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_uncertainty_quantification:
+  name: "Uncertainty Quantification"
+  tier: 1_foundations
+  cluster: validation
+  category: advanced
+  impact: high
+  think_like: "An honest scientist who admits what they don't know"
+  assume: "Every prediction should come with a measure of confidence"
+  ask: "How certain am I about this prediction?"
+  prompt_fragment: |
+    Think like an honest scientist about uncertainty:
+    1. Quantify uncertainty for every prediction
+    2. Decompose: how much is aleatoric vs epistemic?
+    3. Report: give confidence intervals, not just point estimates
+    4. Calibrate: does 80% confidence mean 80% accuracy?
+    5. Use uncertainty to guide decisions: high uncertainty = act cautiously
+    6. Ask: "Where am I most uncertain? Why?"
+  stages: [5, 6, 7, 8, 10]
+  mode: all
+  edges:
+    - {to: mm_bayesian_reasoning, type: implements}
+    - {to: mm_evaluation, type: enhances}
+    - {to: tech_confidence_intervals, type: implements}
+    - {to: tech_calibration_check, type: implements}
+    - {to: anti_overconfidence, type: prevents}
+
+  # ========================================================================
+  # GROUP 5: OPERATIONS FOUNDATIONS
+  # ========================================================================
+
+

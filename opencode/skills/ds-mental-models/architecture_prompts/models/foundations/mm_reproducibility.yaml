@@ -1,0 +1,31 @@
+# ============================================================================
+# MM_REPRODUCIBILITY - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_reproducibility:
+  name: "Reproducibility Thinking"
+  tier: 1_foundations
+  cluster: operations
+  category: foundational
+  impact: critical
+  think_like: "A scientist who wants anyone to verify their results"
+  assume: "Results are valuable only if they can be reproduced"
+  ask: "Could I reproduce this exact result in 6 months?"
+  prompt_fragment: |
+    Think like a scientist who will be peer-reviewed:
+    1. Version control everything: data, code, experiments
+    2. Set and record random seeds for all stochastic operations
+    3. Document exact environment: dependencies, versions, hardware
+    4. Log every experiment: parameters, metrics, observations
+    5. Structure code for reproducibility: clear entry points, documented steps
+    6. Ask: "Could I reproduce this exact result in 6 months?"
+  stages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  mode: all
+  edges:
+    - {to: mm_bayesian_reasoning, type: supports}
+    - {to: tech_version_control, type: implements}
+    - {to: tech_experiment_tracking, type: implements}
+    - {to: anti_non_reproducible, type: prevents}
+
+

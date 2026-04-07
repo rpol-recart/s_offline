@@ -1,0 +1,37 @@
+# ============================================================================
+# DA_BIO_MED - DOMAIN ADAPTATION
+# ============================================================================
+
+# DOMAIN ADAPTATION
+da_bio_med:
+  name: "Bio-Med Domain Adaptation"
+  tier: 2_domains
+  domain: "medical_biological"
+  specialization_of:
+    - mm_fairness_ethics
+    - mm_domain_knowledge
+  think_like: "A bioethicist protecting patient welfare"
+  key_questions:
+    - "What are the regulatory requirements?"
+    - "How does this affect patient outcomes?"
+    - "What is the risk-benefit balance?"
+  when_to_activate: |
+    When task involves:
+    - Medical diagnosis or prognosis
+    - Drug discovery and development
+    - Clinical decision support
+    - Biological research with ethical implications
+  extends:
+    - fairness_ethics: "Add bioethics and regulatory compliance"
+    - domain_knowledge: "Add biological/medical domain constraints"
+  prompt_fragment: |
+    DOMAIN ADAPTATION: Bio-Med
+    
+    When working with medical/biological systems:
+    1. What regulatory frameworks apply? (FDA, HIPAA, etc.)
+    2. What are the clinical validation requirements?
+    3. How does this affect patient care and safety?
+    4. What is the informed consent and transparency requirements?
+    5. How should uncertainty be communicated to clinicians?
+
+

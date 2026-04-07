@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_FEATURE_ENGINEERING - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_feature_engineering:
+  name: "Feature Engineering Thinking"
+  tier: 1_foundations
+  cluster: model_development
+  category: foundational
+  impact: critical
+  think_like: "A translator converting raw signals into model language"
+  assume: "The model can only learn what features represent"
+  ask: "What information does this feature capture?"
+  prompt_fragment: |
+    Think like a feature translator:
+    1. Ask: "What underlying concept does this data represent?"
+    2. Ask: "How should the model see this concept?"
+    3. Create features that capture domain relationships
+    4. Test each feature's predictive contribution
+    5. Check for leakage: does this feature use future information?
+    6. Verify: will this feature be available at prediction time?
+  stages: [2, 3, 4]
+  mode: creator
+  edges:
+    - {to: mm_data_quality, type: enabled_by}
+    - {to: mm_model_selection, type: informed_by}
+    - {to: tech_feature_creation, type: implements}
+    - {to: tech_leakage_detection, type: implements}
+    - {to: anti_use_all_raw_features, type: prevents}
+
+

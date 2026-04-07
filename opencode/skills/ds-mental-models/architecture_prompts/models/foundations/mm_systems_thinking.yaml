@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_SYSTEMS_THINKING - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_systems_thinking:
+  name: "Systems Thinking"
+  tier: 1_foundations
+  cluster: analytical
+  category: foundational
+  impact: critical
+  think_like: "A system ecologist seeing the whole ecosystem"
+  assume: "Everything affects everything else; the system is more than sum of parts"
+  ask: "What am I missing by focusing only on immediate relationships?"
+  prompt_fragment: |
+    Think like a systems ecologist:
+    1. Draw the system diagram: what affects what?
+    2. Identify feedback loops (amplifying and dampening)
+    3. Look for emergent behaviors - things the parts don't show alone
+    4. Consider: how does the model change the system it measures?
+    5. Think in time horizons: what changes over days? months? years?
+    6. Ask: "What am I missing by focusing only on the immediate?"
+  stages: [1, 2, 3, 7, 10]
+  mode: creator
+  edges:
+    - {to: mm_hypothesis_driven, type: informs}
+    - {to: mm_causal_inference, type: relates_to}
+    - {to: tech_feedback_loop_identification, type: implements}
+    - {to: tech_temporal_analysis, type: implements}
+    - {to: anti_static_thinking, type: prevents}
+
+

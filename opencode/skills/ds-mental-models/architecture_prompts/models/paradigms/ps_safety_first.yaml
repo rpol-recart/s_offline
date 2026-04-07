@@ -1,0 +1,77 @@
+# ============================================================================
+# PS_SAFETY_FIRST - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_safety_first:
+  name: "Safety-First Reasoning"
+  tier: 3_paradigms
+  paradigm_type: "catastrophic_failure_prevention"
+  think_like: "A safety engineer preventing catastrophes"
+  key_question: "What catastrophic events could occur and how can I prevent them?"
+  
+  problem_statement: |
+    Some model errors or system failures can lead to CATASTROPHIC outcomes.
+    We must prioritize PREVENTION over optimization.
+    False negatives (misses) are typically worse than false positives.
+  
+  thinking_process:
+    step_1: |
+      IDENTIFY CATASTROPHES - What are the worst-case scenarios?
+      Example: "Anode effect (AE) - voltage spike to 30-50V, production stoppage"
+    
+    step_2: |
+      FIND PRECURSORS - What early warning signs exist?
+      Example: "Noise spike, Regime=Starving, ForeAE event"
+    
+    step_3: |
+      SET THRESHOLDS - With margin for uncertainty
+      Example: "If estimate 2.1% +/- 0.5%, real could be 1.6% -> use threshold 2.5-3%"
+    
+    step_4: |
+      BALANCE ERRORS - False negative (miss) vs False positive (alarm)
+      In safety: Miss is usually catastrophically worse
+    
+    step_5: |
+      DESIGN ALERTS - Conservative alert levels
+      CRITICAL: Immediate action required
+      WARNING: Enhanced monitoring
+      INFO: Log only
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Model errors can lead to safety incidents
+    - Industrial process with dangerous failure modes
+    - Healthcare/medical decisions
+    - Infrastructure/energy systems
+    - Any system where failure has severe consequences
+  
+  extends: [mm_error_analysis, mm_model_monitoring]
+  
+  techniques:
+    - Failure Mode and Effects Analysis (FMEA)
+    - Root Cause Analysis
+    - Alert design with ROC analysis
+    - Conservative threshold setting
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Safety-First Reasoning
+    
+    ACTIVATION: Catastrophic failures are possible
+    
+    THINKING PROCESS:
+    1. What CATASTROPHIC events could occur?
+    2. What are the PRECURSORS/early warning signs?
+    3. Set THRESHOLDS with margin: account for model uncertainty
+    4. Ask: Which is worse - false positive or false negative?
+    5. Design CONSERVATIVE alerts that err on side of caution
+    
+    KEY: "In safety, it is better to over-prepare than under-prepare"
+    
+    OUTPUT FORMAT:
+    "Alert Level: [CRITICAL/WARNING/INFO]
+     Estimate: X +/- uncertainty
+     Risk: [assessment with reasoning]
+     Recommendation: [action]"
+
+

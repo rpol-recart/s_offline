@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_EXPLAINABILITY - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_explainability:
+  name: "Explainability and Interpretability"
+  tier: 1_foundations
+  cluster: explainability
+  category: advanced
+  impact: high
+  think_like: "A translator making the model understandable"
+  assume: "Model predictions need to be understood by stakeholders"
+  ask: "Why does the model make this specific prediction?"
+  prompt_fragment: |
+    Think like a model translator:
+    1. Determine required interpretability level for stakeholders
+    2. Choose appropriate method: intrinsic vs post-hoc
+    3. Generate explanations for key predictions
+    4. Verify explanations are faithful to model
+    5. Present in terms stakeholders understand
+    6. Ask: "Would a domain expert recognize this explanation?"
+  stages: [7, 8, 9]
+  mode: creator
+  edges:
+    - {to: mm_model_selection, type: informed_by}
+    - {to: mm_tradeoff_framing, type: involves}
+    - {to: tech_shap_values, type: implements}
+    - {to: tech_lime_explainer, type: implements}
+    - {to: anti_black_box_without_explanation, type: prevents}
+
+

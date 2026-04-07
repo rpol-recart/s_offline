@@ -1,0 +1,503 @@
+# ============================================================================
+# DS AGENT MENTAL MODELS DISPATCH SYSTEM
+# ============================================================================
+# Version: 1.0
+# Purpose: Fast task classification and model retrieval
+# Usage: Agent receives task -> classifies -> loads only relevant models
+# ============================================================================
+#
+# This is the ENTRY POINT for agents - small file that points to models.
+# Full model definitions are in separate modular files.
+# ============================================================================
+
+# ============================================================================
+# TASK TYPE CLASSIFICATION
+# ============================================================================
+# Agent should classify task into one or more of these types
+# Each type maps to specific models from the graph
+# ============================================================================
+
+task_types:
+  
+  # --------------------------------------------------------------------------
+  # BY COMPLEXITY / STANDARD TASKS
+  # --------------------------------------------------------------------------
+  
+  standard_supervised:
+    description: "Standard supervised/unsupervised learning task"
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: hypothesis_driven
+        file: models/foundations/mm_hypothesis_driven.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: model_selection
+        file: models/foundations/mm_model_selection.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+    foundation_tier: true
+    paradigm_tier: false
+    
+  standard_regression:
+    description: "Regression prediction task"
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+    foundation_tier: true
+    
+  standard_classification:
+    description: "Classification task"  
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: fairness_ethics
+        file: models/foundations/mm_fairness_ethics.yaml
+    foundation_tier: true
+
+  # --------------------------------------------------------------------------
+  # BY DATA CHARACTERISTICS
+  # --------------------------------------------------------------------------
+  
+  time_series_data:
+    description: "Time series analysis and forecasting"
+    models:
+      - id: time_series
+        file: models/foundations/mm_time_series.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: signal_processing
+        file: models/paradigms/ps_signal_processing.yaml
+    foundation_tier: true
+    paradigm_tier: false
+    
+  highdimensional:
+    description: "High-dimensional data, many features"
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+    foundation_tier: true
+    
+  imbalanced:
+    description: "Imbalanced classes"
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: fairness_ethics
+        file: models/foundations/mm_fairness_ethics.yaml
+    foundation_tier: true
+    
+  small_sample:
+    description: "Small sample size, few labels"
+    models:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+      - id: constraint_driven
+        file: models/paradigms/ps_constraint_driven.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+    foundation_tier: true
+    paradigm_tier: true
+
+  # --------------------------------------------------------------------------
+  # BY PROBLEM TYPE (activates TIER 3 PARADIGMS)
+  # --------------------------------------------------------------------------
+  
+  unmeasurable_target:
+    description: "Target variable cannot be measured directly"
+    models:
+      - id: proxy_mediated
+        file: models/paradigms/ps_proxy_mediated.yaml
+      - id: state_reconstruction
+        file: models/paradigms/ps_state_reconstruction.yaml
+      - id: physics_first
+        file: models/domains/da_physics_first.yaml
+    paradigm_tier: true
+    domain_hint: "physics"
+    example: "Al2O3 concentration from Noise sensor"
+    
+  hidden_state:
+    description: "Need to estimate latent/internal state"
+    models:
+      - id: state_reconstruction
+        file: models/paradigms/ps_state_reconstruction.yaml
+      - id: proxy_mediated
+        file: models/paradigms/ps_proxy_mediated.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+    paradigm_tier: true
+    example: "Battery SOC, process state"
+    
+  no_labels:
+    description: "No labeled data available"
+    models:
+      - id: constraint_driven
+        file: models/paradigms/ps_constraint_driven.yaml
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+    paradigm_tier: true
+    example: "Physics-Informed ML"
+    
+  safety_critical:
+    description: "Catastrophic failures possible"
+    models:
+      - id: safety_first
+        file: models/paradigms/ps_safety_first.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+      - id: model_monitoring
+        file: models/foundations/mm_model_monitoring.yaml
+    paradigm_tier: true
+    example: "Industrial anomaly detection"
+    
+  multi_scale:
+    description: "Data at multiple time/frequency scales"
+    models:
+      - id: multiscale_fusion
+        file: models/paradigms/ps_multiscale_fusion.yaml
+      - id: time_series
+        file: models/foundations/mm_time_series.yaml
+      - id: signal_processing
+        file: models/paradigms/ps_signal_processing.yaml
+    paradigm_tier: true
+    example: "Sensor + lab measurements"
+    
+  signal_analysis:
+    description: "Raw sensor signal analysis"
+    models:
+      - id: frequency_domain
+        file: models/paradigms/ps_frequency_domain.yaml
+      - id: signal_processing
+        file: models/paradigms/ps_signal_processing.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+    paradigm_tier: true
+    example: "Vibration, audio, electrochemical"
+
+  # --------------------------------------------------------------------------
+  # BY DOMAIN (activates TIER 2 DOMAIN)
+  # --------------------------------------------------------------------------
+  
+  physics_engineering:
+    description: "Physical/engineering systems"
+    models:
+      - id: physics_first
+        file: models/domains/da_physics_first.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: domain_knowledge
+        file: models/foundations/mm_domain_knowledge.yaml
+    domain_tier: true
+    foundation_tier: true
+    
+  medical_biological:
+    description: "Medical or biological systems"
+    models:
+      - id: bio_med_first
+        file: models/domains/da_bio_med.yaml
+      - id: fairness_ethics
+        file: models/foundations/mm_fairness_ethics.yaml
+      - id: domain_knowledge
+        file: models/foundations/mm_domain_knowledge.yaml
+    domain_tier: true
+    foundation_tier: true
+    
+  financial:
+    description: "Financial risk and trading"
+    models:
+      - id: financial_first
+        file: models/domains/da_financial.yaml
+      - id: business_impact
+        file: models/foundations/mm_business_impact.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+    domain_tier: true
+    foundation_tier: true
+    
+  real_time_control:
+    description: "Real-time control systems"
+    models:
+      - id: time_critical
+        file: models/domains/da_time_critical.yaml
+      - id: control_loop
+        file: models/paradigms/ps_control_loop.yaml
+      - id: model_monitoring
+        file: models/foundations/mm_model_monitoring.yaml
+    domain_tier: true
+    foundation_tier: true
+
+  # --------------------------------------------------------------------------
+  # BY LIFECYCLE PHASE
+  # --------------------------------------------------------------------------
+  
+  exploratory:
+    description: "Initial data exploration"
+    models:
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: domain_knowledge
+        file: models/foundations/mm_domain_knowledge.yaml
+    foundation_tier: true
+    
+  model_development:
+    description: "Building and training models"
+    models:
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: model_selection
+        file: models/foundations/mm_model_selection.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+    foundation_tier: true
+    
+  production:
+    description: "Deployed model monitoring"
+    models:
+      - id: model_monitoring
+        file: models/foundations/mm_model_monitoring.yaml
+      - id: safety_first
+        file: models/paradigms/ps_safety_first.yaml
+      - id: control_loop
+        file: models/paradigms/ps_control_loop.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+    foundation_tier: true
+    
+  debugging:
+    description: "Debugging model issues"
+    models:
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+      - id: causal_inference
+        file: models/foundations/mm_causal_inference.yaml
+      - id: hypothesis_driven
+        file: models/foundations/mm_hypothesis_driven.yaml
+    foundation_tier: true
+
+# ============================================================================
+# MODEL BUNDLES (Pre-configured combinations)
+# ============================================================================
+# Quick references for common scenarios - just load the bundle
+# Each bundle model ID maps to file path for expansion
+
+bundles:
+  
+  foundation_always:
+    description: "Always load these regardless of task"
+    models_info:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: tradeoff_framing
+        file: models/foundations/mm_tradeoff_framing.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: hypothesis_driven
+        file: models/foundations/mm_hypothesis_driven.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+    
+  foundation_analysis:
+    description: "Standard data science analysis"
+    models_info:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: tradeoff_framing
+        file: models/foundations/mm_tradeoff_framing.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: hypothesis_driven
+        file: models/foundations/mm_hypothesis_driven.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+    
+  foundation_modeling:
+    description: "Full modeling pipeline"
+    models_info:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: tradeoff_framing
+        file: models/foundations/mm_tradeoff_framing.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: hypothesis_driven
+        file: models/foundations/mm_hypothesis_driven.yaml
+      - id: data_quality
+        file: models/foundations/mm_data_quality.yaml
+      - id: feature_engineering
+        file: models/foundations/mm_feature_engineering.yaml
+      - id: model_selection
+        file: models/foundations/mm_model_selection.yaml
+      - id: evaluation
+        file: models/foundations/mm_evaluation.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+      - id: business_impact
+        file: models/foundations/mm_business_impact.yaml
+    
+  soft_sensing:
+    description: "Soft sensing with unmeasurable target"
+    models_info:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: proxy_mediated
+        file: models/paradigms/ps_proxy_mediated.yaml
+      - id: state_reconstruction
+        file: models/paradigms/ps_state_reconstruction.yaml
+      - id: constraint_driven
+        file: models/paradigms/ps_constraint_driven.yaml
+      - id: physics_first
+        file: models/domains/da_physics_first.yaml
+      - id: multiscale_fusion
+        file: models/paradigms/ps_multiscale_fusion.yaml
+      - id: frequency_domain
+        file: models/paradigms/ps_frequency_domain.yaml
+      - id: safety_first
+        file: models/paradigms/ps_safety_first.yaml
+      - id: control_loop
+        file: models/paradigms/ps_control_loop.yaml
+      - id: uncertainty_quantification
+        file: models/foundations/mm_uncertainty_quantification.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+    
+  anomaly_detection:
+    description: "Industrial anomaly/safety detection"
+    models_info:
+      - id: bayesian
+        file: models/foundations/mm_bayesian_reasoning.yaml
+      - id: systems_thinking
+        file: models/foundations/mm_systems_thinking.yaml
+      - id: proxy_mediated
+        file: models/paradigms/ps_proxy_mediated.yaml
+      - id: safety_first
+        file: models/paradigms/ps_safety_first.yaml
+      - id: multiscale_fusion
+        file: models/paradigms/ps_multiscale_fusion.yaml
+      - id: frequency_domain
+        file: models/paradigms/ps_frequency_domain.yaml
+      - id: error_analysis
+        file: models/foundations/mm_error_analysis.yaml
+      - id: model_monitoring
+        file: models/foundations/mm_model_monitoring.yaml
+      - id: control_loop
+        file: models/paradigms/ps_control_loop.yaml
+      - id: business_impact
+        file: models/foundations/mm_business_impact.yaml
+      - id: reproducibility
+        file: models/foundations/mm_reproducibility.yaml
+
+# ============================================================================
+# TASK CLASSIFICATION QUESTIONS
+# ============================================================================
+# Agent should ask these to determine task type
+
+classification_questions:
+  
+  question_1_target:
+    text: "Can you measure the target variable directly with a sensor?"
+    if_no: "unmeasurable_target"
+    
+  question_2_labels:
+    text: "Do you have labeled training data?"
+    if_no: "no_labels"
+    
+  question_3_safety:
+    text: "Are there catastrophic failure scenarios if the model is wrong?"
+    if_yes: "safety_critical"
+    
+  question_4_domain:
+    text: "What is the domain? (Physical / Medical / Financial / Standard)"
+    map_domain: "physics_engineering / medical_biological / financial / standard_supervised"
+    
+  question_5_phase:
+    text: "What phase are you in? (Exploratory / Development / Production)"
+    map_phase: "exploratory / model_development / production"
+
+# ============================================================================
+# FAST LOOKUP TABLE (task -> models)
+# ============================================================================
+# For programmatic access - simple key-value
+
+lookup:
+  
+  al2o3_estimation:
+    task_type: [unmeasurable_target, physics_engineering, multi_scale]
+    bundles: [foundation_modeling, soft_sensing]
+    additional_models: [proxy_mediated, state_reconstruction, physics_first, multiscale_fusion, frequency_domain, safety_first, control_loop]
+    
+  battery_soc_estimation:
+    task_type: [hidden_state, physics_engineering]
+    bundles: [foundation_modeling]
+    additional_models: [state_reconstruction, proxy_mediated, physics_first]
+    
+  fraud_detection:
+    task_type: [safety_critical, imbalanced]
+    bundles: [foundation_modeling, anomaly_detection]
+    additional_models: [safety_first]
+    
+  house_price_prediction:
+    task_type: [standard_regression]
+    bundles: [foundation_modeling]
+    
+  customer_segmentation:
+    task_type: [standard_supervised]
+    bundles: [foundation_analysis]
+    
+  industrial_monitoring:
+    task_type: [safety_critical, multi_scale, signal_analysis]
+    bundles: [anomaly_detection]
+    additional_models: [multiscale_fusion, frequency_domain, safety_first, control_loop]

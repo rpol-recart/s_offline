@@ -1,0 +1,31 @@
+# ============================================================================
+# MM_DATA_QUALITY - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_data_quality:
+  name: "Data Quality Assessment"
+  tier: 1_foundations
+  cluster: model_development
+  category: foundational
+  impact: critical
+  think_like: "A detective investigating evidence reliability"
+  assume: "Garbage in, garbage out; most model problems start with data"
+  ask: "Is this data good enough to answer my question?"
+  prompt_fragment: |
+    Think like a forensic data detective:
+    1. Profile every feature: distributions, missing, cardinality
+    2. Check dimensions: completeness, accuracy, consistency, timeliness, uniqueness, validity, representativeness, integrity, lineage
+    3. Document issues and their potential impact
+    4. Ask: "Could this quality issue invalidate my analysis?"
+    5. Before modeling: "Is this data good enough to answer my question?"
+  stages: [1, 2]
+  mode: creator
+  edges:
+    - {to: mm_hypothesis_driven, type: informs}
+    - {to: mm_feature_engineering, type: feeds}
+    - {to: tech_data_profiling, type: implements}
+    - {to: tech_quality_metrics, type: implements}
+    - {to: anti_ignore_data_quality, type: prevents}
+
+

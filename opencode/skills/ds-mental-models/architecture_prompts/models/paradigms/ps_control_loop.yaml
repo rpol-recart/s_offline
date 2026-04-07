@@ -1,0 +1,85 @@
+# ============================================================================
+# PS_CONTROL_LOOP - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_control_loop:
+  name: "Control-Loop Thinking"
+  tier: 3_paradigms
+  paradigm_type: "model_in_control_system"
+  think_like: "A DCS engineer integrating model into control"
+  key_question: "How does the model fit into the process control architecture?"
+  
+  problem_statement: |
+    The model is not standalone - it becomes part of a CONTROL SYSTEM.
+    Model outputs influence operator actions, which affect the process.
+    Need to think about: integration, conflicts, failure modes, handoffs.
+  
+  thinking_process:
+    step_1: |
+      MAP CONTROL LOOP - How does control currently work?
+      Measurement -> Controller -> Actuator -> Process -> Measurement
+    
+    step_2: |
+      DEFINE ROLE - Where does model fit?
+      Options: Advisory / Semi-automatic / Automatic
+    
+    step_3: |
+      CHECK CONSISTENCY - Does model agree with existing control?
+      Risk: Model and SCPP may recommend different actions
+    
+    step_4: |
+      HANDLE UNCERTAINTY - When to defer to existing control?
+      "Model uncertain = defer to SCPP" is often correct
+    
+    step_5: |
+      DESIGN HANDOVER - How to transition control?
+      Graceful degradation if model unavailable or uncertain
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Model outputs will be used for operational decisions
+    - Model interacts with existing control systems (SCPP, DCS)
+    - Model affects physical process through human operators
+    - Operational acceptance depends on integration
+  
+  extends: [mm_model_monitoring, mm_systems_thinking]
+  
+  techniques:
+    - Control system integration
+    - Human-machine interface design
+    - Alert prioritization
+    - Graceful degradation
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Control-Loop Thinking
+    
+    ACTIVATION: Model becomes part of control system
+    
+    THINKING PROCESS:
+    1. How does EXISTING control work?
+       - Map: Measurement -> Controller -> Actuator -> Process
+    
+    2. Where does MODEL fit?
+       - Advisory: model suggests, operator decides
+       - Semi-automatic: model approves/rejects operator actions
+       - Automatic: model directly controls
+    
+    3. Check for CONFLICTS:
+       - Does model agree with SCPP/DCS?
+       - Who wins if they disagree?
+    
+    4. Handle UNCERTAINTY:
+       - High uncertainty = defer to existing control
+       - Better: "I don't know" than wrong recommendation
+    
+    5. Design FAILURE MODE:
+       - What if model unavailable?
+       - Graceful degradation
+    
+    OUTPUT FORMAT:
+    "Alert Level: [CRITICAL/WARNING/INFO]
+     Confidence: [HIGH/MEDIUM/LOW]
+     Recommendation: [action with confidence level]"
+
+

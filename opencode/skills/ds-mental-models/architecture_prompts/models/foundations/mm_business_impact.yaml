@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_BUSINESS_IMPACT - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_business_impact:
+  name: "Business Impact Thinking"
+  tier: 1_foundations
+  cluster: decision_making
+  category: advanced
+  impact: critical
+  think_like: "A business partner who connects models to value"
+  assume: "Model value is determined by business outcomes, not metrics"
+  ask: "If this model improves, what business metric improves?"
+  prompt_fragment: |
+    Think like a business partner:
+    1. Translate model metrics to operational metrics
+    2. Translate operational metrics to business metrics
+    3. Calculate expected value: improvement x volume x margin
+    4. Compare to costs: development, deployment, maintenance
+    5. Ask: "Is the expected ROI positive?"
+    6. Consider: what else could we do with these resources?
+  stages: [1, 5, 6, 7, 8, 10]
+  mode: creator
+  edges:
+    - {to: mm_tradeoff_framing, type: informs}
+    - {to: mm_evaluation, type: connects_to}
+    - {to: mm_model_monitoring, type: business_validation}
+    - {to: tech_roi_calculation, type: implements}
+    - {to: tech_cost_benefit_analysis, type: implements}
+    - {to: anti_metric_without_value, type: prevents}
+
+

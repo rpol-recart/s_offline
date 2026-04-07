@@ -1,0 +1,37 @@
+# ============================================================================
+# MM_EXPERIMENTAL_DESIGN - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_experimental_design:
+  name: "Experimental Design Thinking"
+  tier: 1_foundations
+  cluster: model_development
+  category: advanced
+  impact: critical
+  think_like: "A designed experimenter who controls for confounders"
+  assume: "Well-designed experiments are essential for causal inference"
+  ask: "What experiment would definitively answer this question?"
+  prompt_fragment: |
+    Think like a rigorous experimenter:
+    1. Define: What is the hypothesis? What is the unit?
+    2. Randomize: How will you assign treatment?
+    3. Control: What confounders will you hold constant?
+    4. Power: How many samples needed?
+    5. Measure: What outcomes? How to attribute?
+    6. Analyze: What test? What assumptions?
+  stages: [1, 2, 5, 6, 7]
+  mode: creator
+  edges:
+    - {to: mm_causal_inference, type: implements}
+    - {to: mm_hypothesis_driven, type: requires}
+    - {to: mm_evaluation, type: enhanced_by}
+    - {to: tech_sample_size_calculation, type: implements}
+    - {to: tech_randomization, type: implements}
+    - {to: anti_observational_only, type: prevents}
+
+  # ========================================================================
+  # GROUP 4: VALIDATION FOUNDATIONS
+  # ========================================================================
+
+

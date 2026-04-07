@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_SIGNALING_AWARENESS - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_signaling_awareness:
+  name: "Signaling Awareness"
+  tier: 1_foundations
+  cluster: decision_making
+  category: advanced
+  impact: high
+  think_like: "An analyst who understands actions communicate"
+  assume: "Every action sends signals about priorities and values"
+  ask: "What does this decision communicate?"
+  prompt_fragment: |
+    Think about what your analysis communicates:
+    1. What story does this finding tell?
+    2. What priorities does this approach signal?
+    3. What will stakeholders conclude?
+    4. Is this signal intended or unintended?
+    5. How might this be misinterpreted?
+  stages: [2, 7, 8, 10]
+  mode: critic
+  edges:
+    - {to: mm_bayesian_reasoning, type: complements}
+    - {to: mm_communication, type: enables}
+    - {to: tech_stakeholder_analysis, type: implements}
+
+  # ========================================================================
+  # GROUP 2: ANALYTICAL FOUNDATIONS
+  # ========================================================================
+
+

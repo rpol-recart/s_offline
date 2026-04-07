@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_CAUSAL_INFERENCE - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_causal_inference:
+  name: "Causal Inference Thinking"
+  tier: 1_foundations
+  cluster: analytical
+  category: advanced
+  impact: critical
+  think_like: "A scientist who knows correlation != causation"
+  assume: "Correlation is necessary but not sufficient for causation"
+  ask: "Is this correlation or causation?"
+  prompt_fragment: |
+    Think like a skeptical causal scientist:
+    1. Ask: "Is this correlation or causation?"
+    2. Identify potential confounders: what else affects both X and Y?
+    3. Check: does temporal precedence support causation? (X before Y)
+    4. Consider: could this relationship be reversed?
+    5. Design: what experiment would establish causation?
+    6. If observational: use causal inference methods (matching, IV, DiD)
+    7. Be humble: "Association is clear, causation requires stronger evidence"
+  stages: [1, 2, 3, 7, 8]
+  mode: all
+  edges:
+    - {to: mm_systems_thinking, type: relates_to}
+    - {to: mm_evaluation, type: requires}
+    - {to: tech_confounder_identification, type: implements}
+    - {to: tech_causal_discovery, type: implements}
+    - {to: anti_causation_from_correlation, type: prevents}
+
+

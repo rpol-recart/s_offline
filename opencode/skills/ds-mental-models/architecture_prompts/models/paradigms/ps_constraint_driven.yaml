@@ -1,0 +1,72 @@
+# ============================================================================
+# PS_CONSTRAINT_DRIVEN - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_constraint_driven:
+  name: "Constraint-Driven Reasoning"
+  tier: 3_paradigms
+  paradigm_type: "learning_without_labels"
+  think_like: "An engineer knowing the allowable limits"
+  key_question: "What can I infer from physical and operational constraints?"
+  
+  problem_statement: |
+    We have NO or VERY FEW labeled examples for training.
+    But we have DOMAIN KNOWLEDGE about what is physically/morally possible.
+    Use constraints as "soft labels" to guide learning.
+  
+  thinking_process:
+    step_1: |
+      PHYSICAL CONSTRAINTS - What are absolute physical limits?
+      Example: "Concentration > 0, < solubility limit, optimal range 2-4%"
+    
+    step_2: |
+      BEHAVIORAL CONSTRAINTS - What system behaviors are expected?
+      Example: "Cannot change rapidly (inertia), responds to control"
+    
+    step_3: |
+      REGIME CONSTRAINTS - What ranges indicate different regimes?
+      Example: "OverFeeding -> increasing, UnderFeeding -> decreasing"
+    
+    step_4: |
+      EMBED CONSTRAINTS - Use in model training:
+      - Physics-Informed Neural Networks (PINN)
+      - Constrained optimization
+      - Bayesian priors from constraints
+    
+    step_5: |
+      REPORT - State what is known from constraints alone
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - No labeled data available (ALL labels missing)
+    - Labels are sparse/expensive (semi-supervised setting)
+    - Physical constraints well understood
+    - Domain knowledge provides strong priors
+  
+  extends: [mm_domain_knowledge, mm_bayesian_reasoning]
+  
+  techniques:
+    - Physics-Informed Neural Networks (PINN)
+    - Constrained optimization
+    - Bayesian inference with informative priors
+    - Self-supervised learning with constraints
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Constraint-Driven Reasoning
+    
+    ACTIVATION: No labels OR strong domain constraints available
+    
+    THINKING PROCESS:
+    1. What PHYSICAL constraints exist? (bounds, conserved quantities)
+    2. What BEHAVIORAL constraints? (inertia, response patterns)
+    3. What REGIME constraints? (operating modes, thresholds)
+    4. Embed these in model: PINN, constrained optimization, Bayesian priors
+    5. Report: what can be inferred from constraints alone
+    
+    KEY: "Without data, constraints narrow the solution space"
+    
+    OUTPUT FORMAT:
+    "Without labels, constraints indicate: X in [lower_bound, upper_bound]"
+
+

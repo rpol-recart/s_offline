@@ -1,0 +1,44 @@
+# ============================================================================
+# DA_PHYSICS_FIRST - DOMAIN ADAPTATION
+# ============================================================================
+
+# DOMAIN ADAPTATION
+da_physics_first:
+  name: "Physics-First Domain Adaptation"
+  tier: 2_domains
+  domain: "physics_engineering"
+  specialization_of:
+    - mm_systems_thinking
+    - mm_domain_knowledge
+  think_like: "A physicist deriving observables from first principles"
+  key_questions:
+    - "What physical laws generate these data?"
+    - "Can I derive analytical relationships, not just correlations?"
+    - "What is physically impossible, constraining my conclusions?"
+  when_to_activate: |
+    When task involves:
+    - Physical/engineering systems (circuits, mechanisms, fluids)
+    - Chemical/industrial processes
+    - Dynamical systems with known physics
+    - Sensor data from physical systems
+  extends:
+    - systems_thinking: "Add physics-based causal mechanisms"
+    - domain_knowledge: "Focus on first-principles constraints"
+  prompt_fragment: |
+    DOMAIN ADAPTATION: Physics-First
+    
+    When working with physical systems, think:
+    1. What physical/chemical/engineering laws govern this process?
+    2. Can I derive equations linking inputs to outputs?
+    3. What quantities are conserved or constrained by physics?
+    4. What is the energy/mass balance?
+    
+    Example for electrical system:
+    - NOT "voltage correlates with current"
+    - BUT "V = IR (Ohm's law) - this is the mechanism"
+    
+    Example for chemical process:
+    - NOT "output depends on temperature"
+    - BUT "reaction rate = k(T) * concentration (Arrhenius)"
+
+

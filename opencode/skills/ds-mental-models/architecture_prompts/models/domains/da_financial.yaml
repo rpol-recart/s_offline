@@ -1,0 +1,40 @@
+# ============================================================================
+# DA_FINANCIAL - DOMAIN ADAPTATION
+# ============================================================================
+
+# DOMAIN ADAPTATION
+da_financial:
+  name: "Financial Risk Domain Adaptation"
+  tier: 2_domains
+  domain: "finance_risk"
+  specialization_of:
+    - mm_business_impact
+    - mm_uncertainty_quantification
+  think_like: "A risk manager quantifying financial exposure"
+  key_questions:
+    - "What is the tail risk?"
+    - "How does model error translate to financial loss?"
+    - "What regulatory capital requirements apply?"
+  when_to_activate: |
+    When task involves:
+    - Trading and investment decisions
+    - Credit scoring and lending
+    - Risk management and compliance
+    - Fraud detection
+  extends:
+    - business_impact: "Add financial risk quantification"
+    - uncertainty_quantification: "Add tail risk and VaR/CVaR thinking"
+  prompt_fragment: |
+    DOMAIN ADAPTATION: Financial Risk
+    
+    When working with financial systems:
+    1. Quantify tail risk: what is the worst-case loss?
+    2. Use VaR/CVaR/ES instead of just expected value
+    3. What is model validation under stressed scenarios?
+    4. How does model error translate to P&L?
+
+# TIER 3: PARADIGM SHIFTS
+# Novel thinking modes for specific problem types
+# Activated when problem has specific characteristics
+
+

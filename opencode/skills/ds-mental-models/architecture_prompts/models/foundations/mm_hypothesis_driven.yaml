@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_HYPOTHESIS_DRIVEN - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_hypothesis_driven:
+  name: "Hypothesis-Driven Development"
+  tier: 1_foundations
+  cluster: analytical
+  category: foundational
+  impact: critical
+  think_like: "A scientist with testable theories"
+  assume: "Starting with specific hypotheses leads to more decisive analysis"
+  ask: "What specific pattern do I expect to find?"
+  prompt_fragment: |
+    Think like a rigorous scientist:
+    1. State your hypothesis before analysis: "I expect X because Y"
+    2. Pre-commit to success criteria: "I will consider hypothesis supported if..."
+    3. Design a test that could refute your hypothesis
+    4. Run analysis
+    5. Evaluate: does evidence support or refute? By how much?
+    6. Update beliefs explicitly and move to next hypothesis
+  stages: [1, 2, 3, 4, 5]
+  mode: creator
+  edges:
+    - {to: mm_bayesian_reasoning, type: enabled_by}
+    - {to: mm_evaluation, type: requires}
+    - {to: tech_hypothesis_formulation, type: implements}
+    - {to: tech_pre_registration, type: implements}
+    - {to: anti_exploratory_fishing, type: prevents}
+    - {to: anti_post_hoc_rationalization, type: prevents}
+
+

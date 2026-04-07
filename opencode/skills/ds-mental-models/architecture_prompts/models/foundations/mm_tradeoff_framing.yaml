@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_TRADEOFF_FRAMING - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_tradeoff_framing:
+  name: "Trade-off Framing"
+  tier: 1_foundations
+  cluster: decision_making
+  category: foundational
+  impact: critical
+  think_like: "A decision designer, not a decision searcher"
+  assume: "Every decision involves trade-offs; there is no perfect solution"
+  ask: "What am I willing to sacrifice?"
+  prompt_fragment: |
+    Think like a decision designer:
+    1. Identify what's fixed and what's flexible in your constraints
+    2. List at least 3 trade-offs you're making
+    3. For each trade-off: what do you gain? what do you lose?
+    4. State explicitly: "I'm willing to sacrifice X to get Y because Z"
+    5. Ask: "Is this trade-off worth it given my goals?"
+  stages: [3, 4, 5, 6, 7, 8]
+  mode: creator
+  edges:
+    - {to: mm_model_selection, type: guides}
+    - {to: mm_bayesian_reasoning, type: enhanced_by}
+    - {to: tech_constraint_identification, type: implements}
+    - {to: tech_opportunity_cost_analysis, type: implements}
+    - {to: anti_perfectionism, type: prevents}
+    - {to: anti_false_optimization, type: prevents}
+
+

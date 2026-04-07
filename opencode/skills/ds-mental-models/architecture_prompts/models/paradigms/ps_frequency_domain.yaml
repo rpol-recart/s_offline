@@ -1,0 +1,84 @@
+# ============================================================================
+# PS_FREQUENCY_DOMAIN - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_frequency_domain:
+  name: "Frequency-Domain Thinking"
+  tier: 3_paradigms
+  paradigm_type: "signal_decomposition"
+  think_like: "An acoustic engineer analyzing sound composition"
+  key_question: "What frequency components are present and what do they reveal?"
+  
+  problem_statement: |
+    Time-domain signals contain information in their FREQUENCY composition.
+    Different physical processes produce different frequency signatures.
+    Analyzing frequency can reveal patterns invisible in time domain.
+  
+  thinking_process:
+    step_1: |
+      DECOMPOSE - Apply Fourier/spectral analysis
+      Get frequency spectrum: what frequencies present with what amplitude
+    
+    step_2: |
+      IDENTIFY BANDS - What frequency ranges are informative?
+      Example: 0.1-0.2 Hz sensitive to Al2O3 (bubble dynamics)
+    
+    step_3: |
+      EXTRACT FEATURES - Spectral characteristics
+      - Spectral centroid (center of mass)
+      - Spectral spread (variance)
+      - Band power (energy in specific bands)
+      - Kurtosis (peakiness)
+    
+    step_4: |
+      RELATE TO PHYSICS - Connect frequencies to processes
+      Example: "Low freq = thermal, Med freq = bubbles, High freq = noise"
+    
+    step_5: |
+      USE AS FEATURES - Add spectral features to model
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Signal has oscillatory components
+    - Different mechanisms produce different frequencies
+    - Time-domain metrics insufficient
+    - Known frequency bands associated with target
+  
+  extends: [mm_time_series, mm_feature_engineering]
+  
+  techniques:
+    - FFT (Fast Fourier Transform)
+    - Spectral analysis
+    - Wavelet transform
+    - Band-pass filtering
+    - Power spectral density
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Frequency-Domain Thinking
+    
+    ACTIVATION: Signal analysis benefits from frequency decomposition
+    
+    THINKING PROCESS:
+    1. Take SIGNAL, not just mean
+       - Don't just average - analyze full temporal signal
+    
+    2. DECOMPOSE into frequency components
+       - Apply FFT or wavelet transform
+       - Get spectrum: amplitude vs frequency
+    
+    3. IDENTIFY informative frequency bands
+       - Which bands correlate with target?
+       - What physical process at each band?
+    
+    4. EXTRACT spectral features
+       - Centroid, spread, band power, kurtosis
+    
+    5. RELATE to physics:
+       "Low freq = slow processes (thermal)
+        Med freq = intermediate (bubbles)
+        High freq = fast (local perturbations)"
+    
+    KEY: "Mean Noise = 0.01V" vs "Mean + spectral shift to 0.2Hz" - second is more informative"
+
+

@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_BAYESIAN_REASONING - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_bayesian_reasoning:
+  name: "Bayesian Reasoning"
+  tier: 1_foundations
+  cluster: decision_making
+  category: foundational
+  impact: critical
+  think_like: "A scientist updating beliefs with evidence"
+  assume: "Every belief can be quantified as probability, updated with evidence"
+  ask: "What would change my mind?"
+  prompt_fragment: |
+    Think like a Bayesian scientist:
+    1. State your prior beliefs explicitly before analysis
+    2. Calculate likelihood of observed data under different hypotheses
+    3. Update beliefs incrementally - avoid binary thinking
+    4. Quantify remaining uncertainty
+    5. Ask: "What evidence would change my mind?"
+  stages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  mode: all
+  edges:
+    - {to: mm_hypothesis_driven, type: enables}
+    - {to: mm_uncertainty_quantification, type: requires}
+    - {to: mm_tradeoff_framing, type: improves}
+    - {to: tech_prior_explicit_statement, type: implements}
+    - {to: tech_bayesian_update, type: implements}
+    - {to: principle_evidence_based, type: implements}
+    - {to: anti_binary_thinking, type: prevents}
+
+

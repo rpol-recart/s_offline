@@ -1,0 +1,36 @@
+# ============================================================================
+# MM_FAIRNESS_ETHICS - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_fairness_ethics:
+  name: "Fairness and Ethics Thinking"
+  tier: 1_foundations
+  cluster: analytical
+  category: advanced
+  impact: critical
+  think_like: "An ethicist who considers harm and fairness"
+  assume: "Models can cause real harm to real people"
+  ask: "Who could be harmed by this model? How?"
+  prompt_fragment: |
+    Think like an ethicist:
+    1. Identify: Who is affected by this model?
+    2. Check: Could this harm protected groups?
+    3. Test: Measure fairness metrics across groups
+    4. Mitigate: Apply bias mitigation techniques
+    5. Monitor: Track fairness over time
+    6. Ask: "Is this model fair? Who decides what is fair?"
+  stages: [1, 2, 5, 6, 7, 10]
+  mode: all
+  edges:
+    - {to: mm_data_quality, type: includes_fairness}
+    - {to: mm_evaluation, type: includes_fairness_metrics}
+    - {to: mm_model_monitoring, type: fairness_monitoring}
+    - {to: tech_fairness_audit, type: implements}
+    - {to: anti_ignore_bias, type: prevents}
+
+# TIER 2: DOMAIN ADAPTATIONS
+# Domain-specific specializations that extend foundation models
+# Activated when working in specific subject matter areas
+
+

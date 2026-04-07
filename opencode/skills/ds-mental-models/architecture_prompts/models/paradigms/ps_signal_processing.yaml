@@ -1,0 +1,93 @@
+# ============================================================================
+# PS_SIGNAL_PROCESSING - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_signal_processing:
+  name: "Signal Processing for Data Science"
+  tier: 3_paradigms
+  paradigm_type: "advanced_signal_analysis"
+  think_like: "A signal processing engineer extracting information"
+  key_question: "What information is embedded in the signal and how to extract it?"
+  
+  problem_statement: |
+    Raw sensor data contains noise, artifacts, and information.
+    Signal processing techniques can extract features invisible to simple statistics.
+    This is especially valuable for IoT, sensor networks, and time-series.
+  
+  thinking_process:
+    step_1: |
+      CLEAN - Remove artifacts and noise
+      - Filter design (low-pass, high-pass, band-pass)
+      - Denoising techniques (wavelet, median)
+    
+    step_2: |
+      DECOMPOSE - Break into components
+      - Trend vs seasonal vs residual
+      - Signal vs noise separation
+    
+    step_3: |
+      TRANSFORM - Change representation
+      - Fourier (frequency)
+      - Wavelet (time-frequency)
+      - Hilbert (instantaneous amplitude/phase)
+    
+    step_4: |
+      EXTRACT - Get informative features
+      - Peaks, valleys, crossings
+      - Energy, entropy, complexity
+      - Pattern signatures
+    
+    step_5: |
+      VALIDATE - Check feature quality
+      - Signal-to-noise ratio
+      - Feature stability over time
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Working with raw sensor data (accelerometers, microphones, etc.)
+    - Signal contains multiple overlaid phenomena
+    - Noise is significant relative to signal
+    - Need to detect events in continuous signal
+    - IoT and edge computing applications
+  
+  extends: [mm_frequency_domain, mm_feature_engineering]
+  
+  techniques:
+    - Digital filtering (FIR, IIR)
+    - Wavelet denoising
+    - Empirical Mode Decomposition
+    - Feature extraction algorithms
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Signal Processing for Data Science
+    
+    ACTIVATION: Raw sensor data requires specialized analysis
+    
+    THINKING PROCESS:
+    1. CLEAN the signal:
+       - Remove noise with appropriate filter
+       - Handle missing data / artifacts
+    
+    2. DECOMPOSE:
+       - What are the components? (trend, seasonal, noise)
+       - Use: detrending, seasonal decomposition
+    
+    3. TRANSFORM:
+       - Time -> Frequency (FFT)
+       - Time -> Time-Frequency (Wavelet)
+       - Choose based on what information needed
+    
+    4. EXTRACT features:
+       - Domain-specific: peaks, crossings, energy
+       - Statistical: entropy, complexity
+       - Spectral: band powers, centroid
+    
+    5. VALIDATE:
+       - Check SNR (signal-to-noise ratio)
+       - Feature stability over time
+    
+    KEY: "Raw signal -> cleaned signal -> decomposed -> features -> ML model"
+
+# TECHNIQUES (Referenced by mental models)
+

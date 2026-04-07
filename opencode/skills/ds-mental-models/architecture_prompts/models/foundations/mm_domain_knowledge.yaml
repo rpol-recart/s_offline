@@ -1,0 +1,35 @@
+# ============================================================================
+# MM_DOMAIN_KNOWLEDGE - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_domain_knowledge:
+  name: "Domain Knowledge Integration"
+  tier: 1_foundations
+  cluster: analytical
+  category: advanced
+  impact: high
+  think_like: "A domain expert collaborating with data"
+  assume: "Domain expertise provides constraints and insights data alone cannot"
+  ask: "What does domain expertise tell me about this relationship?"
+  prompt_fragment: |
+    Think like a domain expert:
+    1. What does domain knowledge tell me about expected relationships?
+    2. Are there known physical/business constraints?
+    3. What features would a domain expert consider?
+    4. Apply domain-based sanity checks to results
+    5. Ask: "Does this result make domain sense?"
+  stages: [1, 2, 3, 4, 7]
+  mode: creator
+  edges:
+    - {to: mm_hypothesis_driven, type: informs}
+    - {to: mm_feature_engineering, type: guides}
+    - {to: mm_evaluation, type: validates}
+    - {to: tech_domain_expert_interview, type: implements}
+    - {to: anti_ignore_domain, type: prevents}
+
+  # ========================================================================
+  # GROUP 3: MODEL DEVELOPMENT FOUNDATIONS
+  # ========================================================================
+
+

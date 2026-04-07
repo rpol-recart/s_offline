@@ -1,0 +1,69 @@
+# ============================================================================
+# PS_STATE_RECONSTRUCTION - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_state_reconstruction:
+  name: "State Reconstruction Thinking"
+  tier: 3_paradigms
+  paradigm_type: "hidden_state_estimation"
+  think_like: "An architect reconstructing a building from its shadows"
+  key_question: "How can I reconstruct internal state from external observations?"
+  
+  problem_statement: |
+    The system has internal states that cannot be directly observed but affect
+    observable outputs. We need to reconstruct/estimate these hidden states.
+  
+  thinking_process:
+    step_1: |
+      IDENTIFY STATE - What hidden states exist?
+      Example: "Al2O3 concentration, anode-cathode distance, bath temperature"
+    
+    step_2: |
+      FIND OUTPUTS - What observations depend on hidden state?
+      Example: "Noise = f(Al2O3, ACD, regime), U = f(Al2O3, ACD, I)"
+    
+    step_3: |
+      BUILD MODEL - What model links state to observations?
+      Options: Physics-based / Data-driven / Hybrid
+    
+    step_4: |
+      INVERT - Use observer to reconstruct state from observations
+      Methods: Kalman filter, Extended Kalman, Particle filter, Neural observer
+    
+    step_5: |
+      QUANTIFY - Report state estimate with uncertainty distribution
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Need to estimate "latent variables" that drive system behavior
+    - Process has internal state not directly observable
+    - Control system requires state feedback
+    - Understanding current system state is needed for decisions
+  
+  extends: [mm_proxy_mediated, mm_systems_thinking]
+  
+  techniques:
+    - State-space models
+    - Kalman filtering
+    - Observer design
+    - Bayesian state estimation
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: State Reconstruction
+    
+    ACTIVATION: Need to estimate hidden/internal state
+    
+    THINKING PROCESS:
+    1. What hidden states exist in this system?
+    2. What observations depend on these states?
+    3. What model links state -> observations?
+    4. Use observer to invert: observations -> state estimate
+    5. Report with uncertainty distribution
+    
+    KEY: Instead of "predict Y", think "reconstruct hidden state X"
+    
+    OUTPUT FORMAT:
+    "Reconstructed state: X = value +/- uncertainty (95% CI: [lower, upper])"
+
+

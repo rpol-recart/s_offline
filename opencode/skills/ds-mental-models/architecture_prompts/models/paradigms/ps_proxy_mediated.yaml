@@ -1,0 +1,67 @@
+# ============================================================================
+# PS_PROXY_MEDIATED - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_proxy_mediated:
+  name: "Proxy-Mediated Reasoning"
+  tier: 3_paradigms
+  paradigm_type: "unmeasurable_target"
+  think_like: "A detective solving through indirect clues"
+  key_question: "How does indirect evidence reveal what I cannot measure?"
+  
+  problem_statement: |
+    The target variable we want to predict/estimate CANNOT be measured directly.
+    We must use proxy variables that correlate with or are caused by the target.
+  
+  thinking_process:
+    step_1: |
+      IS - Define target: What do I want to measure but cannot measure directly?
+      Example: "I want to know Al2O3 concentration in electrolyzer"
+    
+    step_2: |
+      EVIDENCES - Find proxies: What variables CAN I measure that relate to target?
+      Example: "Noise (voltage fluctuations), pseudo-resistance, feeding regime"
+    
+    step_3: |
+      MECHANISM - Understand causal chain: proxy -> intermediate -> target
+      Example: "Al2O3 -> solubility -> bubble dynamics -> voltage fluctuations -> Noise"
+    
+    step_4: |
+      UNCERTAINTY - Account for proxy limitations: proxy may depend on other factors
+      Example: "Noise also depends on ACD, temperature, regime"
+    
+    step_5: |
+      TRANSLATOR - Build model linking proxy to target
+      Options: Physics model / ML model / Observer (Kalman filter)
+  
+  when_to_activate: |
+    When ANY of these conditions are true:
+    - Target variable is not directly measurable (no sensor available)
+    - Direct measurement is too expensive/slow/ dangerous
+    - Target is a "latent variable" or "hidden state"
+    - Only proxy indicators are available
+  
+  extends: [mm_feature_engineering, mm_causal_inference]
+  
+  techniques:
+    - Observer design (Kalman filter, particle filter)
+    - System identification
+    - Inverse modeling
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Proxy-Mediated Reasoning
+    
+    ACTIVATION: Target cannot be directly measured
+    
+    THINKING PROCESS:
+    1. Define what you CANNOT measure (target)
+    2. Find what you CAN measure (proxies)
+    3. Understand causal chain: proxy -> intermediate -> target
+    4. Account for proxy limitations (confounders)
+    5. Build translator model (observer, inverse model)
+    
+    OUTPUT FORMAT:
+    Always include uncertainty: "Estimated target = value +/- uncertainty"
+
+

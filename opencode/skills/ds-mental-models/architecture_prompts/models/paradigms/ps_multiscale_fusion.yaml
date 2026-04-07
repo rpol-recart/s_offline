@@ -1,0 +1,81 @@
+# ============================================================================
+# PS_MULTISCALE_FUSION - PARADIGM SHIFT
+# ============================================================================
+
+# PARADIGM SHIFT
+ps_multiscale_fusion:
+  name: "Multi-Timescale Data Fusion"
+  tier: 3_paradigms
+  paradigm_type: "hierarchical_time_scales"
+  think_like: "A strategist seeing situation across multiple time horizons"
+  key_question: "How do I reason across and fuse information from different time scales?"
+  
+  problem_statement: |
+    Data arrives at DIFFERENT frequencies and has different latencies.
+    We must FUSE information across these scales to build coherent understanding.
+    Example: 1Hz sensor data + 4-hour lab measurements + daily manual readings
+  
+  thinking_process:
+    step_1: |
+      IDENTIFY SCALES - What time scales are present?
+      Example: Seconds (1Hz), Minutes (feeding), Hours (thermal), Days (lab)
+    
+    step_2: |
+      UNDERSTAND DYNAMICS - What processes at each scale?
+      Fast: bubble dynamics, Medium: feeding cycles, Slow: thermal balance
+    
+    step_3: |
+      ALIGN TEMPORALLY - How to join different frequency data?
+      Options: Resampling, As-of joins, Temporal aggregation
+    
+    step_4: |
+      AGGREGATE FEATURES - What features at each scale?
+      Example: Second: mean/std noise, Minute: feeding rate, Day: avg temp
+    
+    step_5: |
+      FUSE ESTIMATES - How to combine multi-scale information?
+      Options: Hierarchical models, State-space models, Multi-task learning
+  
+  when_to_activate: |
+    When ANY of these are true:
+    - Data arrives at multiple frequencies (Hz to days)
+    - Some measurements are rare/sparse (lab data)
+    - Different processes operate at different time scales
+    - Need to combine real-time and historical data
+  
+  extends: [mm_time_series, mm_systems_thinking]
+  
+  techniques:
+    - Temporal resampling and alignment
+    - As-of joins (nearest time matching)
+    - Rolling window aggregations
+    - Hierarchical/multi-scale models
+    - State-space models (Kalman in time)
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Multi-Timescale Data Fusion
+    
+    ACTIVATION: Data at multiple time scales needs fusion
+    
+    THINKING PROCESS:
+    1. What TIME SCALES are present in data?
+       - Fast: seconds/minutes (sensor data)
+       - Medium: minutes/hours (control cycles)
+       - Slow: hours/days (thermal, manual)
+    
+    2. What processes at each scale?
+    
+    3. How to ALIGN different frequencies?
+       - Resampling to common grid
+       - As-of joins (nearest time)
+       - Aggregation windows
+    
+    4. What FEATURES at each scale?
+    
+    5. How to FUSE multi-scale estimates?
+       - Hierarchical models
+       - State-space (Kalman across scales)
+    
+    KEY: "Think at each scale, then reconcile across scales"
+
+

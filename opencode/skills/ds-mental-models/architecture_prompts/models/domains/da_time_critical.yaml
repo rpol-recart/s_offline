@@ -1,0 +1,36 @@
+# ============================================================================
+# DA_TIME_CRITICAL - DOMAIN ADAPTATION
+# ============================================================================
+
+# DOMAIN ADAPTATION
+da_time_critical:
+  name: "Time-Critical Domain Adaptation"
+  tier: 2_domains
+  domain: "real_time_control"
+  specialization_of:
+    - mm_time_series
+    - mm_model_monitoring
+  think_like: "An engineer designing for real-time constraints"
+  key_questions:
+    - "Can I meet latency requirements?"
+    - "What happens if computation takes too long?"
+    - "How does the model handle missing/deferred computation?"
+  when_to_activate: |
+    When task involves:
+    - Real-time inference requirements
+    - Embedded systems
+    - Control systems with strict timing
+    - Streaming data with SLA requirements
+  extends:
+    - time_series: "Add latency and timing constraints"
+    - model_monitoring: "Add real-time health monitoring"
+  prompt_fragment: |
+    DOMAIN ADAPTATION: Time-Critical
+    
+    When real-time requirements exist:
+    1. What is the maximum latency budget?
+    2. What is the cost of missed deadlines?
+    3. Can I use faster/simpler models for time-critical paths?
+    4. What fallback when computation cannot complete?
+
+

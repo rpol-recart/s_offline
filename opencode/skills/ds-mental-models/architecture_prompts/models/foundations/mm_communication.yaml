@@ -1,0 +1,32 @@
+# ============================================================================
+# MM_COMMUNICATION - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_communication:
+  name: "Communication Thinking"
+  tier: 1_foundations
+  cluster: operations
+  category: advanced
+  impact: high
+  think_like: "A translator who makes complex accessible"
+  assume: "Analysis value is zero if not understood by stakeholders"
+  ask: "How will this audience understand this?"
+  prompt_fragment: |
+    Think like a skilled communicator:
+    1. Identify: Who is the audience? What do they need?
+    2. Adapt: Technical level, focus areas, time constraints
+    3. Lead with: What should they take away?
+    4. Support: With appropriate evidence for this audience
+    5. Anticipate: What questions will they ask?
+    6. Explain: How does this connect to what they care about?
+  stages: [7, 8, 9]
+  mode: operator
+  edges:
+    - {to: mm_explainability, type: enables}
+    - {to: mm_business_impact, type: translates}
+    - {to: tech_audience_analysis, type: implements}
+    - {to: tech_visualization, type: implements}
+    - {to: anti_one_size_fits_all, type: prevents}
+
+

@@ -1,0 +1,33 @@
+# ============================================================================
+# MM_ERROR_ANALYSIS - FOUNDATION MODEL
+# ============================================================================
+
+# FOUNDATION MODEL
+mm_error_analysis:
+  name: "Error Analysis and Debugging"
+  tier: 1_foundations
+  cluster: validation
+  category: foundational
+  impact: critical
+  think_like: "A detective investigating crime scenes"
+  assume: "Aggregate metrics hide the story; specific failures reveal problems"
+  ask: "Why exactly does the model fail here?"
+  prompt_fragment: |
+    Think like a forensic error detective:
+    1. Collect failure cases, sort by severity
+    2. Group errors into categories
+    3. For each category: what is the root cause?
+    4. Prioritize fixes by impact
+    5. Test hypotheses with targeted experiments
+    6. Verify fixes reduce specific error types
+    7. Document: "Model fails on X because Y, fixed by Z"
+  stages: [5, 6, 7]
+  mode: operator
+  edges:
+    - {to: mm_evaluation, type: enabled_by}
+    - {to: mm_feature_engineering, type: informs}
+    - {to: tech_error_categorization, type: implements}
+    - {to: tech_root_cause_analysis, type: implements}
+    - {to: anti_look_at_aggregate_only, type: prevents}
+
+

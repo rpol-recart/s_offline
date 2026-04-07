@@ -1,0 +1,164 @@
+# ============================================================================
+# MM_ARCHITECTURE_GRAPHING — FOUNDATION MODEL
+# ============================================================================
+
+mm_architecture_graphing:
+  name: "Architecture Graphing"
+  tier: 1_foundations
+  cluster: structural
+  category: foundational
+  impact: critical
+  think_like: "A structural engineer reading blueprints while walking through a building"
+  assume: "Every line of code serves a purpose; the challenge is seeing the structure beneath"
+  ask: "What is the minimum graph that captures the essential structure?"
+  prompt_fragment: |
+    Think like an architecture cartographer:
+    
+    1. FIRST, see the whole — get the directory structure before touching files
+       Why: You cannot understand a room without knowing what building it's in
+    
+    2. THEN, classify components — put each symbol into a layer (L1-L6)
+       L1 = Structural (what exists)
+       L2 = Behavioral (what flows)
+       L3 = Knowledge (what describes)
+       L4 = Quality (what's broken)
+       L5 = Operational (what runs)
+       L6 = Deployment (what ships)
+    
+    3. NEXT, trace paths — follow data from entry to storage
+       Entry (REST) → Service → Repository → Database
+       Every edge should reflect real data flow
+    
+    4. LOOK for warning signs — TODOs, FIXMEs, God Classes
+       These aren't just issues, they're clues to design pressure points
+    
+    5. VERIFY by sampling — don't trust a graph you haven't spot-checked
+       Pick 3 nodes, confirm they exist. Pick 3 edges, confirm they compile.
+    
+    6. COUNT coverage — how many files have you mapped?
+       70%+ means "good enough to reason about"
+       <50% means "you're looking at a sketch, not a map"
+    
+    OUTPUT FORMAT:
+    Always report: "Nodes: N, Edges: M, Coverage: X%, Critical paths verified: Y/N"
+  stages: [1, 2, 3, 4, 5]
+  mode: analyzer
+  edges:
+    - {to: mm_systems_thinking, type: relates_to}
+    - {to: mm_hypothesis_driven, type: informs}
+
+# ============================================================================
+# PS_GRAPH_COMPLETION — PARADIGM SHIFT
+# ============================================================================
+
+ps_graph_completion:
+  name: "Graph Completion Thinking"
+  tier: 3_paradigms
+  paradigm_type: "structural_analysis"
+  think_like: "A detective completing a case file with missing pieces"
+  key_question: "What is the minimum evidence needed to trust this graph?"
+  
+  problem_statement: |
+    We cannot read all code in a large project. We must build a useful graph
+    from selective sampling, guided by patterns and priorities.
+  
+  thinking_process:
+    step_1: |
+      PRIORITIZE — What matters most?
+      1. Entry points (main, API routes, CLI)
+      2. Services with external dependencies (DB, network)
+      3. Shared utilities imported by many modules
+      4. Configuration and constants
+      
+    step_2: |
+      SAMPLE strategically — Cover the important parts first
+      "5-7 files per pass" isn't arbitrary, it's what fits in 32K context
+      Better: 70% coverage of key files than 100% coverage of trivial ones
+      
+    step_3: |
+      INFERRATHER than read — Don't read the whole file
+      Symbols (classes/functions) tell you what exists
+      References (who calls whom) tell you how it connects
+      Only read body when symbol + references aren't enough
+      
+    step_4: |
+      VERIFY by contradiction — Try to prove the graph wrong
+      Look for orphan edges (source or target doesn't exist)
+      Check if critical paths actually compile
+      Ask: "Where would this graph mislead me?"
+      
+    step_5: |
+      ITERATE — Graphs are never "done", they're "good enough for this question"
+      Pass 1: Discovery (what exists)
+      Pass 2: Relationships (how it connects)
+      Pass 3-4: Details (models, issues)
+      Pass 5: Validation (does it hold up?)
+  
+  when_to_activate: |
+    When ANY of these conditions are true:
+    - Project has >10K LOC (cannot read everything)
+    - You need to understand dependencies before refactoring
+    - You need to find the critical path from API to DB
+    - You need to identify design pressure points (anti-patterns)
+  
+  extends: [mm_architecture_graphing, mm_systems_thinking]
+  
+  prompt_fragment: |
+    PARADIGM SHIFT: Graph Completion Thinking
+    
+    ACTIVATION: Large codebase, cannot read everything
+    
+    THINKING PROCESS:
+    1. Prioritize: Entry points > Services > Utilities > Config
+    2. Sample strategically: Cover 70% of important files
+    3. Infer rather than read: Symbols + References, not file content
+    4. Verify by contradiction: Look for orphans, check paths
+    5. Iterate: 5 passes, each refines the previous
+
+# ============================================================================
+# TECH_ANTI_PATTERNS — TECHNICAL PATTERN
+# ============================================================================
+
+tech_anti_patterns:
+  name: "Anti-Pattern Detection"
+  tier: 2_techniques
+  cluster: quality
+  category: detection
+  impact: high
+  think_like: "A building inspector finding structural flaws"
+  
+  key_patterns:
+    god_object: |
+      Detection: Single class with >20 methods
+      Graph sign: One node connected to everything else
+      Risk: Change leads to unpredictable side effects
+      
+    circular_dependency: |
+      Detection: A→B→C→A via find_referencing_symbols
+      Graph sign: Cycles in the dependency graph
+      Risk: Cannot test or deploy independently
+      
+    shared_database: |
+      Detection: Multiple services directly accessing same DB tables
+      Graph sign: Multiple data_access_service nodes pointing to same database
+      
+    hardcoded_secrets: |
+      Detection: password = '...' in source code
+      Graph sign: resource node marked with security_issue
+  
+  prompt_fragment: |
+    ANTI-PATTERN DETECTION:
+    
+    Check each L1 node for:
+    1. Method count — God Object if >20
+    2. Fan-out — how many things does it depend on?
+    3. Fan-in — how many things depend on it?
+    
+    Check each edge for:
+    1. Cycle detection — can you trace a path A→B→C→A?
+    2. Cross-layer jumps — L1→L5 without going through L3?
+    
+    Report format:
+    "Anti-patterns found: N
+     - god_object: class_name (X methods)
+     - circular_dependency: A→B→C→A"
