@@ -1,0 +1,72 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "agent": {
+    "orchestrator": {
+      "mode": "primary",
+      "description": "Plans, delegates, and controls tasks. Never reads files or writes code directly.",
+      "prompt": "{file:.opencode/agents/orchestrator.md}",
+      "steps": 30,
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "write": "deny",
+        "bash": {
+          "*": "deny"
+        },
+        "read": "deny",
+        "grep": "deny",
+        "glob": "deny",
+        "list": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "lsp": "deny",
+        "apply_patch": "deny",
+        "alum_rag_*": "deny",
+        "exa_search_*": "deny",
+        "web-reader_*": "deny",
+        "zai-mcp-server_*": "deny",
+        "cryotween-rag_*": "deny"
+      }
+    },
+    "worker": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Executes work: research, architecture, planning, implementation, fixing. Has full file access and selected MCP tools.",
+      "prompt": "{file:.opencode/agents/worker.md}",
+      "steps": 50,
+      "temperature": 0.1,
+      "permission": {
+        "alum_rag_*": "deny",
+        "exa_search_*": "deny",
+        "web-reader_*": "deny",
+        "zai-mcp-server_*": "deny",
+        "cryotween-rag_*": "deny"
+      }
+    },
+    "auditor": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Reviews code and writes/runs tests. Read-only, no file modifications, no MCP tools.",
+      "prompt": "{file:.opencode/agents/auditor.md}",
+      "steps": 35,
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "write": "deny",
+        "apply_patch": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "lsp": "deny",
+        "alum_rag_*": "deny",
+        "exa_search_*": "deny",
+        "web-reader_*": "deny",
+        "zread_*": "deny",
+        "zai-mcp-server_*": "deny",
+        "context-hub_*": "deny",
+        "web-search-prime_*": "deny",
+        "cryotween-rag_*": "deny"
+      }
+    }
+  }
+}
